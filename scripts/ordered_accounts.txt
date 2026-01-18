@@ -1,0 +1,20 @@
+Programa de Capitalización y compra de cartera
+Nuevo Programa
+Saneamientos financieros
+Emisiones realizadas
+Pasivos de las instituciones en liquidación
+Programa de deudores
+Programas de daciones en pago
+Operaciones con instrumentos financieros derivados
+Otros pasivos
+Reserva paz y a salvo
+Reserva para la Protección al Ahorro Bancario
+Reserva para subrogación de OG
+Reserva para Contingencias de Resoluciones Bancarias
+Reserva y Otros pasivos
+Pasivos Totales
+Recursos líquidos
+Recursos por recuperar del pago por subrogación de obligaciones garantizadas
+Programa de deudores
+Programa de daciones en pago
+Pasivos Netos

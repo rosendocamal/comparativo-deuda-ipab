@@ -9,6 +9,7 @@ El Gobierno de México pone a su disposición en [datos.gob.mx](https://www.dato
 Se ha manejado el dataset oficial con descarga del día 16/01/2026, cuenta 1453 registros y pesa aprox. 118 KB. Los nombres de los campos son los siguientes:
 
 | concepto | saldo_inicial | saldo_final | fecha_inicial | fecha_final | notas |
+|----------|---------------|-------------|---------------|-------------|-------|
 
 Y analizando el dataset mediante *LibreOffice Calc* (para una visualización cómoda) o con *nvim* (para una visualización rápida) se puede identificar los siguientes puntos:
 
@@ -30,6 +31,7 @@ Y analizando el dataset mediante *LibreOffice Calc* (para una visualización có
 Ha pasado por un proceso con la ejecución de scripts en Python y manejo de json el dataset oficial y he llegado a una forma más compacta y visualmente fácil de comprender. Este archivo csv cuenta con 21 líneas (que corresponde a los nombres de los campos y cada una cuenta en conceptos) y pesa aprox. 11.8 KB, ¡una disminución del 90% del tamaño original! Sin embargo, ahora se cuenta con 93 columnas que se compone así:
 
 | CONCEPTO | 1999-12-31 | 2000-03-31 | ... | 2025-09-30 |
+|----------|------------|------------|-----|------------|
 
 Aquí lo que he realicé fue comenzar con la fecha inicial y el saldo inicial que era una información redudante, y esquematicé a modo de que es faćil hallar cada cuenta en conceptos con el periodo (fecha de corte) y obtener el valor al corte de dicha cuenta de una manera visualmente más cómoda y rápida.
 
@@ -37,4 +39,45 @@ Aquí lo que he realicé fue comenzar con la fecha inicial y el saldo inicial qu
 
 ## Proceso
 
+### Analizar el dataset en formato csv
 
+Tras procesos heurísticos de ensayo y error, se ha realizado este csv en el cual puse a prueba mis habilidades técnicas de informática y en el que puse estuve en múltiples ocasiones limitado y al borde de lo que podría ejecutar.
+
+Leí el archivo csv mediante un script de Python. Obtuve primero los valores las cuentas, los nombres de las filas y las fechas finales. Con ello, realicé una estructura en un diccionario en el que pasaba casi toda la información del csv al diccionario, excepto las `notas`. La estructura del diccionario es la siguiente:
+
+```
+{
+    "Cuenta A": {
+        "Fecha de Corte 1": {
+            "Saldo desde 1999": 0.0,
+            "Saldo acumulado": 0.0
+        },
+        "Fecha de Corte 2": {
+            "Saldo desde 1999": 0.0,
+            "Saldo acumulado": 0.0
+        }
+    },
+    "Cuenta B": {
+        "Fecha de Corte 1": {
+            "Saldo desde 1999": 0.0,
+            "Saldo acumulado": 0.0
+        },
+        "Fecha de Corte 2": {
+            "Saldo desde 1999": 0.0,
+            "Saldo acumulado": 0.0
+        }
+    }
+{
+```
+
+### Transferir la información del csv a un archivo json
+
+Luego el diccionario lo guardé en un archivo en formato json. Sin embargo, hacerlo de esta manera guarda las cuentas en un orden que no va de acuerdo a la presentación del reporte y como había comentado anteriormente no todas las cuentas aparecen en todos los periodos por lo que hay que tener una lista de las que siempre aparecen y las que no. Las que no siempren aparecen buscamos en que posición suele aparecer y lo colocamos en ese orden. Creé un config en formato json para tener una configuración del orden de las cuentas y poder general el json final.
+
+> Puedes consultar el json logrado [aquí](data/processed/deuda_ipab.json) y el script que me permitió generarlo [aquí.](scripts/dataset_manipulation.py)
+
+#### Cargar el archivo json y obtener el csv final
+
+Con un script en Python cargué el archivo json, y mediantes iteraciones cargué en un archivo csv toda la información organizada por cuentas y periodos por lo que la búsqueda se basaría en tener el nombre de la cuenta y el periodo de la fecha de corte.
+
+> Puedes consultar el script [aquí.](scripts/return_clean_dataset.py)

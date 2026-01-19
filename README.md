@@ -24,6 +24,8 @@ Y analizando el dataset mediante *LibreOffice Calc* (para una visualización có
 * Dicho lo anterior de `saldo_inicial` y `fecha_inicial`, corresponde a la fecha y saldo en el que se decretó el IPAB y en el que inició a operar con los reportes de la deuda del FOBAPROA.
 * Los datos de `saldo_final` y `fecha_final` corresponden a los saldos al corte de la fecha de la "instantánea" (o bien, reporte de deuda) agregada al dataset.
 
+<img src="img/csv_gob.png" alt="DATASET OFICIAL DE LA DEUDA DEL IPAB" width="250">
+
 > Puedes revisar el archivo csv utilizado [aquí.](data/raw/comparativodeudaactualvs1999-092025.csv)
 
 ## Dataset modificado de la deuda del IPAB
@@ -34,6 +36,8 @@ Ha pasado por un proceso con la ejecución de scripts en Python y manejo de json
 |----------|------------|------------|-----|------------|
 
 Aquí lo que he realicé fue comenzar con la fecha inicial y el saldo inicial que era una información redudante, y esquematicé a modo de que es faćil hallar cada cuenta en conceptos con el periodo (fecha de corte) y obtener el valor al corte de dicha cuenta de una manera visualmente más cómoda y rápida.
+
+<img src="img/csv_final.png" alt="CSV FINAL" width="250">
 
 > Puedes revisar el archivo csv logrado [aquí.](data/processed/deuda_ipab.csv)
 
@@ -73,6 +77,8 @@ Leí el archivo csv mediante un script de Python. Obtuve primero los valores las
 ### Transferir la información del csv a un archivo json
 
 Luego el diccionario lo guardé en un archivo en formato json. Sin embargo, hacerlo de esta manera guarda las cuentas en un orden que no va de acuerdo a la presentación del reporte y como había comentado anteriormente, no todas las cuentas aparecen en todos los periodos. Por lo que requerí tener una lista de las que siempre aparecen y las que no. Las que no siempren aparecen, las busqué en que posición suelen aparecer y los coloco en ese orden. Creé un config en formato json para tener una configuración del orden de las cuentas y poder así generar el json final.
+
+<img src="img/json.png" alt="JSON DE CARGA DEL DATASET" width="250">
 
 > Puedes consultar el json logrado [aquí](data/processed/deuda_ipab.json) y el script que me permitió generarlo [aquí.](scripts/dataset_manipulation.py)
 

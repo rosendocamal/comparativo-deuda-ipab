@@ -84,11 +84,7 @@ Con un script en Python cargué el archivo json, y mediantes iteraciones cargué
 
 # Tecnologías
 
-![Python](https://img.shields.io/badge/python-3562A5?style=for-the-badge&logo=python&logoColor=white)
-
-![JSON]()
-
-![CSV]()
+![Python](https://img.shields.io/badge/python-3562A5?style=for-the-badge&logo=python&logoColor=white) ![JSON](https://img.shields.io/badge/json-5E5E5E?style=for-the-badge&logo=json&logoColor=white) ![CSV](https://img.shields.io/badge/csv-4285F4?style=for-the-badge&logo=google-sheets&logoColor=white)
 
 # Licencia
 
